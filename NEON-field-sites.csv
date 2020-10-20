@@ -1,0 +1,82 @@
+siteName,siteID,domainName,domainID,State,Latitude,Longitude,Site Type,Site Subtype,Site Host,meanAnnualTemp_C,meanAnnualPrecip_mm,dominantNLCDClasses,elevation_m
+Little Rock Lake,LIRO,Great Lakes,D05,WI,45.998269,-89.704767,Relocatable Aquatic,Lake,Wisconsin Department of Natural Resources,4.4,793,"Deciduous Forest, Mixed Forest",502
+West St Louis Creek,WLOU,Southern Rockies & Colorado Plateau,D13,CO,39.89137,-105.9154,Relocatable Aquatic,Wadeable Stream,U.S. Forest Service,-0.3,758,Evergreen Forest,3103
+Pu'u Maka'ala Natural Area Reserve,PUUM,Pacific Tropical,D20,HI,19.55309,-155.31731,Core Terrestrial,,"Hawaii State Forest Reserve System Department of Land and Natural Resources, Division of Forestry and Wildlife",13,2685,Evergreen Forest,1685
+Flint River,FLNT,Southeast,D03,GA,31.18542,-84.4374,Relocatable Aquatic,Non-wadeable River,Private Owner,19.5,1307,Mixed Forest,45
+McDiffett Creek,MCDI,Prairie Peninsula,D06,KS,38.94428,-96.44197,Relocatable Aquatic,Wadeable Stream,Private Owner - KSU Charitable Real Estate Foundation,12,860,"Cultivated Crops, Grassland/Herbaceous",396
+Lewis Run,LEWI,Mid-Atlantic,D02,VA,39.09564,-77.98322,Relocatable Aquatic,Wadeable Stream,Casey Trees,12,950,Deciduous Forest,152
+Blue River,BLUE,Southern Plains,D11,OK,34.44422,-96.6242,Relocatable Aquatic,Wadeable Stream,The Nature Conservancy,16,980,"Grassland/Herbaceous, Pasture/Hay",289
+Teakettle 2 Creek,TECR,Pacific Southwest,D17,CA,36.95528,-119.02699,Core Aquatic,Wadeable Stream,U.S. Forest Service,7,941,Evergreen Forest,2011
+Lower Hop Brook,HOPB,Northeast,D01,MA,42.47179,-72.32963,Core Aquatic,Wadeable Stream,Quabbin DCR - Division of Water Supply Protection,8,967,"Evergreen Forest, Mixed Forest",260
+Martha Creek,MART,Pacific Northwest,D16,WA,45.79125,-121.93196,Core Aquatic,Wadeable Stream,U.S. Forest Service,8,2530,Evergreen Forest,434
+Upper Big Creek,BIGC,Pacific Southwest,D17,CA,37.058,-119.256,Relocatable Aquatic,Wadeable Stream,U.S. Forest Service,7,941,Evergreen Forest,1197
+Red Butte Creek,REDB,Great Basin,D15,UT,40.78374,-111.79765,Core Aquatic,Wadeable Stream,"U.S. Forest Service, University of Utah",9.5,713,Deciduous Forest,1742
+Onaqui,ONAQ,Great Basin,D15,UT,40.17759,-112.45244,Core Terrestrial,,Bureau of Land Management,9,388,"Evergreen Forest, Shrub/Scrub",1685
+Santa Rita Experimental Range,SRER,Desert Southwest,D14,AZ,31.91068,-110.83549,Core Terrestrial,,University of Arizona,20,290,Shrub/Scrub,983
+Jornada LTER,JORN,Desert Southwest,D14,NM,32.59068,-106.84254,Relocatable Terrestrial,,"U.S. Department of Agriculture, Agricultural Research Service",17,173,Shrub/Scrub,1329
+Niwot Ridge Mountain Research Station,NIWO,Southern Rockies & Colorado Plateau,D13,CO,40.05425,-105.58237,Core Terrestrial,,"University of Colorado at Boulder, U.S. Forest Service, LTER",0,758,"Evergreen Forest, Grassland/Herbaceous",3513
+Sycamore Creek,SYCA,Desert Southwest,D14,AZ,33.74906,-111.5069,Core Aquatic,Wadeable Stream,U. S. Forest Service,21,350,Shrub/Scrub,727
+Como Creek,COMO,Southern Rockies & Colorado Plateau,D13,CO,40.03496,-105.54487,Core Aquatic,Wadeable Stream,"U.S Forest Service, Boulder County",-0.3,758,Shrub/Scrub,3167
+Moab,MOAB,Southern Rockies & Colorado Plateau,D13,UT,38.24833,-109.38827,Relocatable Terrestrial,,Bureau of Land Management,11,200,"Evergreen Forest, Shrub/Scrub",1767
+Yellowstone Northern Range (Frog Rock),YELL,Northern Rockies,D12,WY,44.95348,-110.53914,Core Terrestrial,,National Park Service,0,509,"Evergreen Forest, Grassland/Herbaceous, Shrub/Scrub",2116
+Blacktail Deer Creek,BLDE,Northern Rockies,D12,WY,44.95011,-110.58715,Core Aquatic,Wadeable Stream,National Park Service,0.2,509,"Emergent Herbaceous Wetlands, Shrub/Scrub",2053
+Pringle Creek,PRIN,Southern Plains,D11,TX,33.37859,-97.78226,Core Aquatic,Wadeable Stream,U. S. Forest Service,18,840,"Deciduous Forest, Grassland/Herbaceous",274
+LBJ National Grassland ,CLBJ,Southern Plains,D11,TX,33.40123,-97.57,Core Terrestrial,,U. S. Forest Service,18,840,"Deciduous Forest, Grassland/Herbaceous",259
+McRae Creek,MCRA,Pacific Northwest,D16,OR,44.2596,-122.16555,Relocatable Aquatic,Wadeable Stream,"HJ Andrews Experimental Forest, U.S. Forest Service, Oregon State University",10,1750,Evergreen Forest,833
+Wind River Experimental Forest,WREF,Pacific Northwest,D16,WA,45.82049,-121.95191,Core Terrestrial,,U.S. Forest Service,8,2530,Evergreen Forest,407
+Abby Road,ABBY,Pacific Northwest,D16,WA,45.76243,-122.33033,Relocatable Terrestrial,,Washington Department of Natural Resources,8,2530,"Evergreen Forest, Grassland/Herbaceous, Shrub/Scrub",363
+Lower Teakettle,TEAK,Pacific Southwest,D17,CA,37.00583,-119.00602,Relocatable Terrestrial,,U.S. Forest Service,7,941,"Evergreen Forest, Shrub/Scrub",2147
+"Caribou Creek, Caribou-Poker Creeks Research Watershed",CARI,Taiga,D19,AK,65.15306,-147.50246,Core Aquatic,Wadeable Stream,University of Alaska,-1,399,Woody Wetlands,263
+Caribou-Poker Creeks Research Watershed,BONA,Taiga,D19,AK,65.15401,-147.50258,Core Terrestrial,,University of Alaska,-1,399,"Deciduous Forest, Evergreen Forest, Mixed Forest, Woody Wetlands",263
+Delta Junction,DEJU,Taiga,D19,AK,63.88112,-145.75136,Relocatable Terrestrial,,Bureau of Land Management,-2,300,"Evergreen Forest, Shrub/Scrub, Woody Wetlands",529
+Healy,HEAL,Taiga,D19,AK,63.87569,-149.21334,Relocatable Terrestrial,,Alaska Department of Natural Resources,-4,320,"Dwarf Scrub, Evergreen Forest, Shrub/Scrub",705
+Toolik Lake,TOOK,Tundra,D18,AK,68.630692,-149.610636,Relocatable Aquatic,Lake,Bureau of Land Management,-4,331,Dwarf Scrub,745
+Toolik,TOOL,Tundra,D18,AK,68.66109,-149.37047,Core Terrestrial,,Bureau of Land Management,-4,331,"Dwarf Scrub, Shrub/Scrub",843
+Oksrukuyik Creek,OKSR,Tundra,D18,AK,68.66975,-149.14302,Core Aquatic,Wadeable Stream,Bureau of Land Management,-4,331,Shrub/Scrub,836
+Utqiaġvik ,BARR,Tundra,D18,AK,71.28241,-156.61936,Relocatable Terrestrial,,Ukpeaġvik Iñupiat Corporation,-12,110,Emergent Herbaceous Wetlands,6
+Soaproot Saddle,SOAP,Pacific Southwest,D17,CA,37.03337,-119.26219,Relocatable Terrestrial,,U.S. Forest Service,10,1246,"Evergreen Forest, Shrub/Scrub",1160
+San Joaquin Experimental Range,SJER,Pacific Southwest,D17,CA,37.10878,-119.73228,Core Terrestrial,,U.S. Forest Service,17,270,"Evergreen Forest, Grassland/Herbaceous, Shrub/Scrub",368
+Lenoir Landing,LENO,Ozarks Complex,D08,AL,31.85388,-88.16122,Relocatable Terrestrial,,"U.S. Army Corps of Engineers, U.S. Fish and Wildlife Service",18,1429,"Deciduous Forest, Woody Wetlands",20
+Ordway-Swisher Biological Station - Suggs Lake,SUGG,Southeast,D03,FL,29.68705,-82.01617,Core Aquatic,Lake,University of Florida Foundation,20,1290,"Evergreen Forest, Woody Wetlands",32
+Klemme Range Research Station,OAES,Southern Plains,D11,OK,35.41059,-99.05879,Relocatable Terrestrial,,"Oklahoma State University, Oklahoma Agricultural Experimental Station",15,670,"Grassland/Herbaceous, Shrub/Scrub",516
+Central Plains Experimental Range,CPER,Central Plains,D10,CO,40.81553,-104.7456,Core Terrestrial,,"U.S. Department of Agriculture, Agriculture Research Service, LTER",8,370,Grassland/Herbaceous,1648
+Arikaree River,ARIK,Central Plains,D10,CO,39.75825,-102.4471,Core Aquatic,Wadeable Stream,The Nature Conservancy,11,449,"Emergent Herbaceous Wetlands, Grassland/Herbaceous, Woody Wetlands",1213
+"North Sterling, CO",STER,Central Plains,D10,CO,40.4619,-103.0293,Relocatable Terrestrial,,Private Owner,8,370,Cultivated Crops,1364
+Treehaven,TREE,Great Lakes,D05,WI,45.49369,-89.58571,Relocatable Terrestrial,,"University of Wisconsin, Stevens Point",5,782,"Deciduous Forest, Evergreen Forest, Mixed Forest, Woody Wetlands",472
+UNDERC,UNDE,Great Lakes,D05,MI,46.23388,-89.53725,Core Terrestrial,,University of Notre Dame Environmental Research Center,3,854,"Deciduous Forest, Mixed Forest, Woody Wetlands",518
+Crampton Lake,CRAM,Great Lakes,D05,WI,46.21111,-89.47825,Core Aquatic,Lake,University of Notre Dame Environmental Research Center,3,854,Woody Wetlands,518
+Steigerwaldt Land Services,STEI,Great Lakes,D05,WI,45.50894,-89.58637,Relocatable Terrestrial,,Steigerwaldt Land Services,5,782,"Deciduous Forest, Mixed Forest, Woody Wetlands",481
+Rio Guilarte,GUIL,Atlantic Neotropical,D04,PR,18.1741,-66.79851,Relocatable Aquatic,Wadeable Stream,University of Puerto Rico,25,1168,"Evergreen Forest, Grassland/Herbaceous",587
+Lajas Experimental Station,LAJA,Atlantic Neotropical,D04,PR,18.02125,-67.0769,Relocatable Terrestrial,,University of Puerto Rico,25,1168,"Cultivated Crops, Grassland/Herbaceous, Pasture/Hay",24
+Guanica Forest,GUAN,Atlantic Neotropical,D04,PR,17.96955,-66.8687,Core Terrestrial,,"State Forest, Dept. of Natural and Environmental Resources, Commonwealth of Puerto Rico",25,1168,Evergreen Forest,143
+Rio Cupeyes,CUPE,Atlantic Neotropical,D04,PR,18.11352,-66.98676,Core Aquatic,Wadeable Stream,Commonwealth of Puerto Rico,25,1168,Evergreen Forest,257
+Ordway-Swisher Biological Station,OSBS,Southeast,D03,FL,29.68927,-81.99343,Core Terrestrial,,University of Florida Foundation,20,1290,"Emergent Herbaceous Wetlands, Evergreen Forest, Woody Wetlands",45
+Ordway-Swisher Biological Station - Barco Lake,BARC,Southeast,D03,FL,29.67647,-82.00909,Core Aquatic,Lake,University of Florida Foundation,20,1290,Shrub/Scrub,32
+Disney Wilderness Preserve,DSNY,Southeast,D03,FL,28.12504,-81.4362,Relocatable Terrestrial,,The Nature Conservancy,22,1150,"Pasture/Hay, Woody Wetlands",15
+Jones Ecological Research Center,JERC,Southeast,D03,GA,31.19484,-84.46861,Relocatable Terrestrial,,Private Owner,19.5,1307,"Cultivated Crops, Deciduous Forest, Evergreen Forest, Mixed Forest",44
+Blandy Experimental Farm,BLAN,Mid-Atlantic,D02,VA,39.06026,-78.07164,Relocatable Terrestrial,,University of Virginia,12,950,"Deciduous Forest, Pasture/Hay",183
+Smithsonian Environmental Research Center,SERC,Mid-Atlantic,D02,MD,38.89008,-76.56001,Relocatable Terrestrial,,Smithsonian Institution,14,1107,"Cultivated Crops, Deciduous Forest",15
+Smithsonian Conservation Biology Institute,SCBI,Mid-Atlantic,D02,VA,38.89292,-78.1395,Core Terrestrial,,Smithsonian Institution,13,1054,"Deciduous Forest, Evergreen Forest, Pasture/Hay",361
+Posey Creek,POSE,Mid-Atlantic,D02,VA,38.89332,-78.14678,Core Aquatic,Wadeable Stream,Smithsonian Institution,13,1054,Deciduous Forest,244
+Bartlett Experimental Forest,BART,Northeast,D01,NH,44.06388,-71.28731,Relocatable Terrestrial,,U.S. Forest Service,8,1056,"Deciduous Forest, Evergreen Forest, Mixed Forest",232
+Konza Prairie Biological Station - Relocatable,KONA,Prairie Peninsula,D06,KS,39.11044,-96.61295,Relocatable Terrestrial,,"The Nature Conservancy, Kansas State University",12,860,Cultivated Crops,340
+Kings Creek,KING,Prairie Peninsula,D06,KS,39.10506,-96.60336,Core Aquatic,Wadeable Stream,"The Nature Conservancy, Kansas State University, LTER",12,860,Deciduous Forest,366
+Konza Prairie Biological Station,KONZ,Prairie Peninsula,D06,KS,39.10077,-96.56309,Core Terrestrial,,"The Nature Conservancy, Kansas State University, LTER",12,860,"Deciduous Forest, Grassland/Herbaceous",381
+"Rocky Mountain National Park, CASTNET",RMNP,Central Plains,D10,CO,40.27591,-105.54592,Relocatable Terrestrial,,National Park Service,4,520,Evergreen Forest,2743
+Woodworth,WOOD,Northern Plains,D09,ND,47.12823,-99.24136,Core Terrestrial,,"U.S. Geological Survey, U.S. Fish and Wildlife Service",5,490,"Emergent Herbaceous Wetlands, Grassland/Herbaceous",579
+Prairie Pothole ,PRPO,Northern Plains,D09,ND,47.12999,-99.25055,Core Aquatic,Lake,"U.S. Geological Survey, U.S. Fish and Wildlife Service",5,490,Grassland/Herbaceous,579
+Northern Great Plains Research Laboratory,NOGP,Northern Plains,D09,ND,46.76972,-100.91535,Relocatable Terrestrial,,"U.S. Department of Agriculture, Agricultural Research Service",5,400,Grassland/Herbaceous,578
+Prairie Lake at Dakota Coteau Field School,PRLA,Northern Plains,D09,ND,47.15909,-99.11388,Relocatable Aquatic,Lake,State of North Dakota Land Trust,5,490,Grassland/Herbaceous,565
+Dakota Coteau Field School,DCFS,Northern Plains,D09,ND,47.16165,-99.10656,Relocatable Terrestrial,,State of North Dakota Land Trust,5,490,Grassland/Herbaceous,559
+Talladega National Forest,TALL,Ozarks Complex,D08,AL,32.95046,-87.39327,Core Terrestrial,,U.S. Forest Service,17,1350,"Deciduous Forest, Evergreen Forest, Mixed Forest",135
+Mayfield Creek,MAYF,Ozarks Complex,D08,AL,32.95966,-87.40813,Core Aquatic,Wadeable Stream,U.S. Forest Service,17,1350,"Deciduous Forest, Mixed Forest",96
+Lower Tombigbee River at Choctaw Refuge,TOMB,Ozarks Complex,D08,AL,31.8521,-88.16107,Relocatable Aquatic,Non-wadeable River,U.S. Army Corps of Engineers,18,1429,Mixed Forest,20
+Dead Lake,DELA,Ozarks Complex,D08,AL,32.54172,-87.80389,Relocatable Terrestrial,,U.S. Army Corps of Engineers,18,1290,"Evergreen Forest, Woody Wetlands",22
+Black Warrior River near Dead Lake,BLWA,Ozarks Complex,D08,AL,32.54153,-87.79815,Relocatable Aquatic,Non-wadeable River,Private Owner - U.S. Army Corps of Engineers,18,1290,Woody Wetlands,22
+Walker Branch,WALK,Appalachians & Cumberland Plateau,D07,TN,35.95947,-84.28041,Core Aquatic,Wadeable Stream,U.S. Department of Energy,15.3,1222,Deciduous Forest,334
+Oak Ridge,ORNL,Appalachians & Cumberland Plateau,D07,TN,35.96412,-84.2826,Core Terrestrial,,U.S. Department of Energy,15,1222,"Deciduous Forest, Evergreen Forest, Pasture/Hay",334
+Mountain Lake Biological Station,MLBS,Appalachians & Cumberland Plateau,D07,VA,37.37828,-80.52484,Relocatable Terrestrial,,Private Owner - University of Virginia,13,1030,Deciduous Forest,1126
+LeConte Creek,LECO,Appalachians & Cumberland Plateau,D07,TN,35.69043,-83.50379,Relocatable Aquatic,Wadeable Stream,National Park Service,13.4,1396,Deciduous Forest,579
+"Great Smoky Mountains National Park, Twin Creeks",GRSM,Appalachians & Cumberland Plateau,D07,TN,35.68896,-83.50195,Relocatable Terrestrial,,National Park Service,13,1396,"Deciduous Forest, Evergreen Forest",579
+The University of Kansas Field Station,UKFS,Prairie Peninsula,D06,KS,39.04043,-95.19215,Relocatable Terrestrial,,University of Kansas,12,870,"Deciduous Forest, Pasture/Hay",335
+Harvard Forest,HARV,Northeast,D01,MA,42.5369,-72.17266,Core Terrestrial,,"Harvard University; LTER; Massachusetts Department of Conservation and Recreation, Division of Water Supply Protection",8,967,"Deciduous Forest, Evergreen Forest, Mixed Forest, Woody Wetlands",351

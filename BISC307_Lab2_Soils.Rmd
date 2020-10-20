@@ -1,0 +1,194 @@
+---
+title: 'BISC 307, Lab 2: NEON Megapit Soil Profiles'
+author: "Prof. Jackie Hatala Matthes, FA 2020"
+date: 'Lab: 5-6 November 2020'
+output:
+  html_document: default
+  pdf_document: default
+---
+
+
+### Lab 2 Objectives
+1. Join data frames based on key variables.
+2. Practice data wrangling.
+2. Visualize similarities and differences among soil profiles in ecoclimate zones.
+3. Analyze patterns in soil variables among sites.
+
+### 1. Introduction: NEON Data and Megapit Sampling
+In this lab, we'll learn to work with data from the National Ecological Observatory Network (NEON) megapit soil data. You can read more about the [NEON Megapit sampling design](https://data.neonscience.org/data-products/DP1.00096.001), which contains data that capture soil horizons, bulk density, texture, and nutrient content. 
+
+The first thing that we need to do is download the NEON data from the server to the local computer. We can use the `neonUtilities` package (after you install it to your computer) to read in NEON data through the NEON API. We'll do this by using the `loadbyProduct()` function, with the data product ID that corresponds to the Megapit data. 
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+#install.packages("neonUtilities")
+
+# Set global option to NOT convert all character variables to factors
+# This helps to make the NEON functions work best
+options(stringsAsFactors=F)
+
+# Load required packages
+library(neonUtilities)
+library(tidyverse)
+
+#Read in all available Megapit data
+Megapit_data <- loadByProduct(dpID = "DP1.00096.001", check.size = F)
+
+# Unlist Megapit_data to Rstudio environment 
+list2env(Megapit_data, .GlobalEnv)
+```
+
+In future labs we can use `loadByProduct()` to specify particular NEON sites or date ranges that we'd like. But for now we'll use all the Megapit data from NEON sites.
+
+The main Megapit data frames start with the prefix `mgp`, and include biogeochemistry data, bulk density, horizon types and depths, and soil taxonomy. Here we'll work with:
+
+* the horizon name and depth data in`mgp_herhorizon`
+* biogeochemistry data in `mpg_biogeosample`
+* bulk density data in `mgp_perbulksample`
+
+If we look at one of the data frames in this set, you'll see that there are many columns that are important for data documentation, but not necessarily helpful for data analysis. Our first steps will remove extraneous columns that have a particularly huge amount of text, and filter the data to only include "Regular" samples. 
+
+```{r}
+# Depths of horizon layers and horizon IDs per site
+# Use mutate to create a horizon name that is just the first letter
+soil_horizons <- mgp_perhorizon %>%
+  select(-uid, -remarks, -publicationDate) %>% # minus sign here removes columns
+  mutate(horizonNameSimple = gsub("^.*?([A-Z]).*", "\\1", horizonName))
+
+# Soil texture, elemental, and nutrient data per horizon
+soil_biogeochem <- mgp_perbiogeosample %>%
+  select(-uid, -remarks) %>%
+  filter(biogeoSampleType=="Regular")
+
+# Soil bulk density per horizon
+soil_bulkdens <- mgp_perbulksample %>%
+  select(-uid, -remarks, -laboratoryName, -publicationDate) %>%
+  filter(bulkDensSampleType=="Regular")
+```
+
+Now that we've cleaned up each of the tables a bit, we can join them together using the `left_join()` function. A left join uses the data frame on the left-hand size of the function (i.e., the first data frame argument in the function) as the basis for joining the second table. Here the `soil_horizons` data frame is on the left becuase the horizon depth data is necessary to interpret any of the biogeochemistry or bulk density data. 
+
+```{r}
+# Join biogeochemical and physical data 
+# left_join(df_left, df_right, by = c(set of columns in common) - i.e., the key)
+soils <- left_join(soil_horizons, soil_biogeochem, 
+               by=c('horizonID', 'siteID', 'pitID','setDate',
+                    'collectDate', 'domainID', 'horizonName')) %>%
+  left_join(soil_bulkdens, by=c('horizonID', 'siteID', 'pitID','setDate',
+                    'collectDate', 'domainID', 'horizonName')) %>%
+  arrange(siteID, horizonBottomDepth) # Sort by siteID then horizon depth
+```
+
+***
+**Code Challenge 1:** In  your group, take a look at the soils data frame. Outline the data prep and plotting steps (don't actually write the code yet until we discuss as a large group) that you would take to make a single ggplot with soil horizon bottom depth on the y-axis and total carbon content on the x-axis with points of different colors for the two sites with "D01" domainID. 
+
+***
+
+### 2. Comparing Megapit Data Across Ecosystems
+
+One of the huge benefits of the NEON suite of sites is that it can be used to examine macroscale patterns and processes across widely different types of ecosystems. To capture  some of the similarities and differences among NEON sites, let's add site data to the soil profiles. This is located in the `NEON-field-sites.csv` file that should be in this repository. 
+
+```{r}
+# Load csv file with NEON site data
+neon_sites <- read_csv("NEON-field-sites.csv")
+
+# Attach NEON site data to soil profiles
+soils_sites <- soils %>%
+  left_join(neon_sites, by = c("domainID","siteID"))
+```
+
+Looking across the [range of NEON sites](https://www.neonscience.org/field-sites/field-sites-map), pick two sites that you think will be similar to each other, and two sites that you think will be different with respect to the amount of carbon, over different horizons, that is in the soil. Justify why you think that the two sites might be similar or different. 
+
+*** 
+**Code Challenge 2:** Within your group, work on developing two ggplots that test your ideas about the two similar and two different sites. You should be testing your own sites that are different from other people within your group, so that you can all compare and contrast a wide variety of different sites through this analysis. 
+
+***
+
+### 3. Comparing Megapit Data Across Ecosystems
+
+The last tasks for this lab is to work on developing code to summarize data across groups. We  and to test for statistical differences with linear regression using a continuous variable (for example, precipitation) with linear between/among groups with an ANOVA (ANanlysis Of VAriance). You can watch the video about the ANOVA statistical test to get more details on how this works and where to find info in R output that shows the significance test. 
+
+We'll go through one example that investigates whether mean annual precipitation at a site is a good predictor for the O-layer horizon depth.
+
+```{r}
+# Data processing steps:  
+# 1. Filter to just the O-horizon data
+# 2. Use mutate to calculate O-horizon depth from top/bottom difference
+# 3. Plot O-horizon depth vs mean annual precipitation
+# 4. Linear regression: O-depth ~ precipitation (y ~ x)
+
+# Steps 1 & 2: Data Wrangling
+Ohorizon_precip <- soils_sites %>%
+  filter(horizonNameSimple == "O") %>%
+  mutate(horizonDepth = horizonBottomDepth - horizonTopDepth)
+  
+# Step 3: Plot
+ggplot(Ohorizon_precip, aes(x = meanAnnualPrecip_mm, y = horizonDepth)) +
+  geom_point() +
+  labs(x = "Mean Annual Precipitation (mm)", y = "O-horizon depth (cm)") +
+  theme_bw()
+```
+
+By visualizing the plot, we can see that many sites have relatively small O-layer depths, with a few larger outliers. Let's try a logarithm transformation for the y-axis to see if that helps the data to be more normally distributed. 
+
+```{r}
+# Step 3: Plot with log(horizonDepth)
+ggplot(Ohorizon_precip, aes(x = meanAnnualPrecip_mm, y = log(horizonDepth))) +
+  geom_point()+
+  labs(x = "Mean Annual Precipitation (mm)", y = "ln O-horizon depth (cm)") +
+  theme_bw()
+
+```
+
+That's a little better, but the relationship still looks quite nonlinear, particularly due to the two points with ~2.5 meters of rainfall per year, which are the tropical rainforest sites in Puerto Rico. Let's see if we can also log-transform the x-axis to be more normally distributed:
+
+```{r}
+# Step 3: Plot with log(horizonDepth) ~ log(precip)
+ggplot(Ohorizon_precip, aes(x = log(meanAnnualPrecip_mm), y = log(horizonDepth))) +
+  geom_point()+
+  geom_smooth(method = "lm") +
+  labs(x = "ln Mean Annual Precipitation (mm)", y = "ln O-horizon depth (cm)") +
+  theme_bw()
+
+```
+
+There we go! Now we can test to see whether the MAP is a significant predictor of O-horizon depth at the NEON Megapit sites by estimating a linear model fit to the log-transformed data. This uses the `lm()` function from base R:
+
+```{r}
+# 4. Create linear regression model for log(O-depth) ~ log(Precip)  format is y~x
+reg_OdepthMAP <- lm(log(horizonDepth) ~ log(meanAnnualPrecip_mm), 
+                    data = Ohorizon_precip)
+
+# Look at linear regression summary
+summary(reg_OdepthMAP)
+```
+
+**See the Linear Model video for how to pull information out of this `summary()` function that is useful for you!**
+
+We can also use the same `lm()` function to estimate statistical differences among groups with an ANOVA model. And we can use the `TukeyHSD()` function to do the Tukey Honest Significant Difference Test for pairwise comparisons among groups. For example, to go back to our original `soils_sites` data frame and test for differences in estimated organic carbon content among soil horizons:
+
+```{r}
+# ANOVA model to test for differences in organic C among soil horizons (O, A, B, E, &C) 
+horizon_orgC <- lm(estimatedOC ~ horizonNameSimple, data = soils_sites) 
+
+# Output for overall test of whether horizon sinificantly explained organic C
+summary(aov(horizon_orgC))
+
+# Output for the Tukey HSD test of pairwise comparisons among horizons
+TukeyHSD(aov(horizon_orgC))
+
+```
+
+
+***
+**LAB 2 REPORT INSTRUCTIONS:**
+
+* Identify one question that you'd like to investigate with the data from this lab. 
+
+* As you structure your data analysis to answer your question, write your code in the `LabReport2.Rmd` file provided in this repository, pretending that you are starting from scratch (i.e., don't assume that you have anything loaded from doing the lab exercise). The goal is to be able to hand someone this file and be able to have them re-run your analysis to see what you did and how. 
+
+* Within your `.Rmd` file, write the text sections that are outlined in the [Lab Report Guidelines](https://docs.google.com/document/d/1BP7JYDuru8hdvQbqYwJ1s6pUWiVkBI9hmGoX8qB2eqA/edit?usp=sharing). I won't be strict about length requirements, but please try to include roughly the amount of text that would appear in 2 single-spaced pages.
+
+* Your Lab 2 Report Rmd file must create at least one ggplot figure and one summary table, which counts toward the 2-page limit. 
+
+***
+
