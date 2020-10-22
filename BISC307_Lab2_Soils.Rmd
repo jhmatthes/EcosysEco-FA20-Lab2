@@ -11,8 +11,8 @@ output:
 ### Lab 2 Objectives
 1. Join data frames based on key variables.
 2. Practice data wrangling.
-2. Visualize similarities and differences among soil profiles in ecoclimate zones.
-3. Analyze patterns in soil variables among sites.
+3. Visualize similarities and differences among soil profiles in ecoclimate zones.
+4. Analyze patterns in soil variables among sites.
 
 ### 1. Introduction: NEON Data and Megapit Sampling
 In this lab, we'll learn to work with data from the National Ecological Observatory Network (NEON) megapit soil data. You can read more about the [NEON Megapit sampling design](https://data.neonscience.org/data-products/DP1.00096.001), which contains data that capture soil horizons, bulk density, texture, and nutrient content. 
