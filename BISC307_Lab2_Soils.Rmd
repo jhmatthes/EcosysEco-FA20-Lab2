@@ -164,19 +164,6 @@ summary(reg_OdepthMAP)
 
 **See the Linear Model video for how to pull information out of this `summary()` function that is useful for you!**
 
-We can also use the same `lm()` function to estimate statistical differences among groups with an ANOVA model. And we can use the `TukeyHSD()` function to do the Tukey Honest Significant Difference Test for pairwise comparisons among groups. For example, to go back to our original `soils_sites` data frame and test for differences in estimated organic carbon content among soil horizons:
-
-```{r}
-# ANOVA model to test for differences in organic C among soil horizons (O, A, B, E, &C) 
-horizon_orgC <- lm(estimatedOC ~ horizonNameSimple, data = soils_sites) 
-
-# Output for overall test of whether horizon sinificantly explained organic C
-summary(aov(horizon_orgC))
-
-# Output for the Tukey HSD test of pairwise comparisons among horizons
-TukeyHSD(aov(horizon_orgC))
-
-```
 
 
 ***
