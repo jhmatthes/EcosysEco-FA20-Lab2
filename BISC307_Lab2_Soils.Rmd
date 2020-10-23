@@ -151,10 +151,20 @@ ggplot(Ohorizon_precip, aes(x = log(meanAnnualPrecip_mm), y = log(horizonDepth))
 
 ```
 
-There we go! Now we can test to see whether the MAP is a significant predictor of O-horizon depth at the NEON Megapit sites by estimating a linear model fit to the log-transformed data. This uses the `lm()` function from base R:
+There we go! Now we can test to see whether the MAP is a significant predictor of O-horizon depth at the NEON Megapit sites by estimating a linear model fit to the log-transformed data. But first, let's also see how to do a correlation test with the `cor.test` function. This calculates the overall correlation coefficient `r` for the relationship between two variables, and is a less restrictive tool for inference because it does not assume causality.
 
 ```{r}
-# 4. Create linear regression model for log(O-depth) ~ log(Precip)  format is y~x
+# 4a. Calculate correlation between log(horizonDepth) & log(meanAnnualPrecip_mm)
+cor.test(log(Ohorizon_precip$horizonDepth), 
+         log(Ohorizon_precip$meanAnnualPrecip_mm))
+
+```
+From this output, we can see that the correlation coefficient (called `r`) is equal to -0.75, indicating a strong negative correlation between these two variables. Closer to the top of the output we also see that the p-value < 0.01, which indicates this correlation is signfiicant at the alpha = 0.01 value.
+
+Assessing whether the slope of a linear regression model is different from zero is a stronger test of statistical inference. This test assumes that the x-axis is a predictor variable (indpendent variable) for the data on the y-axis (dependent variable). We can estimate a linear regression model for data in R using the `lm()` function from base R:
+
+```{r}
+# 4b. Create linear regression model for log(O-depth) ~ log(Precip)  format is y~x
 reg_OdepthMAP <- lm(log(horizonDepth) ~ log(meanAnnualPrecip_mm), 
                     data = Ohorizon_precip)
 
@@ -162,9 +172,9 @@ reg_OdepthMAP <- lm(log(horizonDepth) ~ log(meanAnnualPrecip_mm),
 summary(reg_OdepthMAP)
 ```
 
-**See the Linear Model video for how to pull information out of this `summary()` function that is useful for you!**
+**See [this doc](https://docs.google.com/document/d/18671Z80MydBCiP1FuHTUFWI1xDNqmedHBwUSf5BJ7E8/edit?usp=sharing) for how to find/report statistical information from the R summary output for correlations and linear regression. ** 
 
-
+And you can watch [this video](https://youtu.be/Mpd83AuDTrU) and potentially other videos in [this set on linear regression](https://www.khanacademy.org/math/ap-statistics/inference-slope-linear-regression/inference-slope/v/intro-inference-slope) for more conceptual details about hypothesis testing with linear regression, the details of which are beyond the scope of this course.
 
 ***
 **LAB 2 REPORT INSTRUCTIONS:**
