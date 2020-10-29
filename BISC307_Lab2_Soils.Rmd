@@ -18,6 +18,8 @@ In this lab, we'll learn to work with data from the National Ecological Observat
 
 The first thing that we need to do is download the NEON data from the server to the local computer. We can use the `neonUtilities` package (after you install it to your computer) to read in NEON data through the NEON API. We'll do this by using the `loadbyProduct()` function, with the data product ID that corresponds to the Megapit data. 
 
+NEON data are coded by "data product IDs" (the `dpID` in the `loadByProduct()` function below). You can find MANY more NEON data products in the [NEON data catalog](https://data.neonscience.org/data-products/explore).
+
 ```{r, results='hide', message=FALSE, warning=FALSE}
 #install.packages("neonUtilities")
 
