@@ -7,7 +7,6 @@ output:
   pdf_document: default
 ---
 
-
 ### Lab 2 Objectives
 1. Join data frames based on key variables.
 2. Practice data wrangling.
@@ -22,8 +21,7 @@ The first thing that we need to do is download the NEON data from the server to 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 #install.packages("neonUtilities")
 
-# Set global option to NOT convert all character variables to factors
-# This helps to make the NEON functions work best
+# Set global option to NOT convert all character variables to factors, which helps to make the NEON functions to work best
 options(stringsAsFactors=F)
 
 # Load required packages
@@ -51,8 +49,8 @@ If we look at one of the data frames in this set, you'll see that there are many
 # Depths of horizon layers and horizon IDs per site
 # Use mutate to create a horizon name that is just the first letter
 soil_horizons <- mgp_perhorizon %>%
-  select(-uid, -remarks, -publicationDate) %>% # minus sign here removes columns
-  mutate(horizonNameSimple = gsub("^.*?([A-Z]).*", "\\1", horizonName))
+  select(-uid, -remarks, -publicationDate) %>% # minus sign "unselects"
+  mutate(horizonNameSimple = str_extract(horizonName, "[A-Z]{1}"))
 
 # Soil texture, elemental, and nutrient data per horizon
 soil_biogeochem <- mgp_perbiogeosample %>%
@@ -69,7 +67,7 @@ Now that we've cleaned up each of the tables a bit, we can join them together us
 
 ```{r}
 # Join biogeochemical and physical data 
-# left_join(df_left, df_right, by = c(set of columns in common) - i.e., the key)
+# function structure: left_join(df_left, df_right, by = c(set of columns in common) - i.e., the key)
 soils <- left_join(soil_horizons, soil_biogeochem, 
                by=c('horizonID', 'siteID', 'pitID','setDate',
                     'collectDate', 'domainID', 'horizonName')) %>%
@@ -80,7 +78,6 @@ soils <- left_join(soil_horizons, soil_biogeochem,
 
 ***
 **Code Challenge 1:** In  your group, take a look at the soils data frame. Outline the data prep and plotting steps (don't actually write the code yet until we discuss as a large group) that you would take to make a single ggplot with soil horizon bottom depth on the y-axis and total carbon content on the x-axis with points of different colors for the two sites with "D01" domainID. 
-
 ***
 
 ### 2. Comparing Megapit Data Across Ecosystems
@@ -105,7 +102,7 @@ Looking across the [range of NEON sites](https://www.neonscience.org/field-sites
 
 ### 3. Comparing Megapit Data Across Ecosystems
 
-The last tasks for this lab is to work on developing code to summarize data across groups. We  and to test for statistical differences with linear regression using a continuous variable (for example, precipitation) with linear between/among groups with an ANOVA (ANanlysis Of VAriance). You can watch the video about the ANOVA statistical test to get more details on how this works and where to find info in R output that shows the significance test. 
+The last tasks for this lab is to work on developing code to summarize data across different variables and to test for statistical relationships with linear regression using a continuous variable (for example, precipitation) and between/among groups with an ANOVA (ANanlysis Of VAriance).   
 
 We'll go through one example that investigates whether mean annual precipitation at a site is a good predictor for the O-layer horizon depth.
 
@@ -128,7 +125,7 @@ ggplot(Ohorizon_precip, aes(x = meanAnnualPrecip_mm, y = horizonDepth)) +
   theme_bw()
 ```
 
-By visualizing the plot, we can see that many sites have relatively small O-layer depths, with a few larger outliers. Let's try a logarithm transformation for the y-axis to see if that helps the data to be more normally distributed. 
+By visualizing the data, we can see that many sites have relatively small O-layer depths, with a few larger outliers. This is a good candidate for a logarithm transformation for the y-axis to see if that helps the data to be more normally distributed. 
 
 ```{r}
 # Step 3: Plot with log(horizonDepth)
@@ -139,7 +136,7 @@ ggplot(Ohorizon_precip, aes(x = meanAnnualPrecip_mm, y = log(horizonDepth))) +
 
 ```
 
-That's a little better, but the relationship still looks quite nonlinear, particularly due to the two points with ~2.5 meters of rainfall per year, which are the tropical rainforest sites in Puerto Rico. Let's see if we can also log-transform the x-axis to be more normally distributed:
+That's a little better for the y-axis, but the relationship still looks nonlinear, particularly due to the two points with ~2.5 meters of rainfall per year on the x-axis, which are the tropical rainforest sites in Puerto Rico. Let's see if we can also log-transform the x-axis to be more normally distributed:
 
 ```{r}
 # Step 3: Plot with log(horizonDepth) ~ log(precip)
@@ -151,7 +148,7 @@ ggplot(Ohorizon_precip, aes(x = log(meanAnnualPrecip_mm), y = log(horizonDepth))
 
 ```
 
-There we go! Now we can test to see whether the MAP is a significant predictor of O-horizon depth at the NEON Megapit sites by estimating a linear model fit to the log-transformed data. But first, let's also see how to do a correlation test with the `cor.test` function. This calculates the overall correlation coefficient `r` for the relationship between two variables, and is a less restrictive tool for inference because it does not assume causality.
+There we go! Now we can test to see whether the MAP is a significant predictor of O-horizon depth at the NEON Megapit sites by estimating a linear model fit to the log-transformed data. But first, let's also see how to do a correlation test with the `cor.test` function. This calculates the overall correlation coefficient `r` that describes the strength of the relationship between two variables. You can read more about [correlation and linear regression here](http://www.biostathandbook.com/linearregression.html).
 
 ```{r}
 # 4a. Calculate correlation between log(horizonDepth) & log(meanAnnualPrecip_mm)
@@ -159,12 +156,13 @@ cor.test(log(Ohorizon_precip$horizonDepth),
          log(Ohorizon_precip$meanAnnualPrecip_mm))
 
 ```
-From this output, we can see that the correlation coefficient (called `r`) is equal to -0.75, indicating a strong negative correlation between these two variables. Closer to the top of the output we also see that the p-value < 0.01, which indicates this correlation is signfiicant at the alpha = 0.01 value.
+From this output, we can see that the correlation coefficient (called `r` when you're writing it in a paper) is equal to -0.75, indicating a strong negative correlation between these two variables. Closer to the top of the output we also see that the p-value < 0.01, which indicates this correlation is signfiicant at the alpha = 0.01 value.
 
 Assessing whether the slope of a linear regression model is different from zero is a stronger test of statistical inference. This test assumes that the x-axis is a predictor variable (indpendent variable) for the data on the y-axis (dependent variable). We can estimate a linear regression model for data in R using the `lm()` function from base R:
 
 ```{r}
-# 4b. Create linear regression model for log(O-depth) ~ log(Precip)  format is y~x
+# 4b. Create linear regression model for log(O-depth) ~ log(Precip)  
+# *** The format for the lm() function is y-variable ~ x-variable
 reg_OdepthMAP <- lm(log(horizonDepth) ~ log(meanAnnualPrecip_mm), 
                     data = Ohorizon_precip)
 
