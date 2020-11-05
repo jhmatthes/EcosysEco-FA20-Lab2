@@ -41,7 +41,7 @@ In future labs we can use `loadByProduct()` to specify particular NEON sites or 
 
 The main Megapit data frames start with the prefix `mgp`, and include biogeochemistry data, bulk density, horizon types and depths, and soil taxonomy. Here we'll work with:
 
-* the horizon name and depth data in`mgp_herhorizon`
+* the horizon name and depth data in`mgp_perhorizon`
 * biogeochemistry data in `mpg_biogeosample`
 * bulk density data in `mgp_perbulksample`
 
@@ -50,6 +50,8 @@ If we look at one of the data frames in this set, you'll see that there are many
 ```{r}
 # Depths of horizon layers and horizon IDs per site
 # Use mutate to create a horizon name that is just the first letter
+# str_extract: from stringr package, gets a string that matches conditions
+# str_extract(column name, "[any letter A-Z]{1}")
 soil_horizons <- mgp_perhorizon %>%
   select(-uid, -remarks, -publicationDate) %>% # minus sign "unselects"
   mutate(horizonNameSimple = str_extract(horizonName, "[A-Z]{1}"))
@@ -59,13 +61,13 @@ soil_biogeochem <- mgp_perbiogeosample %>%
   select(-uid, -remarks) %>%
   filter(biogeoSampleType=="Regular")
 
-# Soil bulk density per horizon
+# Soil bulk density per horizon: grams of mass per unit volume of soil
 soil_bulkdens <- mgp_perbulksample %>%
   select(-uid, -remarks, -laboratoryName, -publicationDate) %>%
   filter(bulkDensSampleType=="Regular")
 ```
 
-Now that we've cleaned up each of the tables a bit, we can join them together using the `left_join()` function. A left join uses the data frame on the left-hand size of the function (i.e., the first data frame argument in the function) as the basis for joining the second table. Here the `soil_horizons` data frame is on the left becuase the horizon depth data is necessary to interpret any of the biogeochemistry or bulk density data. 
+Now that we've cleaned up each of the tables a bit, we can join them together using the `left_join()` function. A left join uses the data frame on the left-hand side of the function (i.e., the first data frame argument in the function) as the basis for joining the second table. Here the `soil_horizons` data frame is on the left becuase the horizon depth data is necessary to interpret any of the biogeochemistry or bulk density data. 
 
 ```{r}
 # Join biogeochemical and physical data 
@@ -81,6 +83,18 @@ soils <- left_join(soil_horizons, soil_biogeochem,
 ***
 **Code Challenge 1:** In  your group, take a look at the soils data frame. Outline the data prep and plotting steps (don't actually write the code yet until we discuss as a large group) that you would take to make a single ggplot with soil horizon bottom depth on the y-axis and total carbon content on the x-axis with points of different colors for the two sites with "D01" domainID. 
 ***
+
+```{r}
+# Code Challenge 1 Answer
+# 1. filter with just D01
+# 2. ggplot(data = soils) + geom_point(aes(x = bottom depth, y = soil carbon, color = siteID))
+
+soils_D01 <- filter(soils, domainID == "D01")
+
+ggplot(data = soils_D01) +
+  geom_point(aes(y = horizonBottomDepth*-1, 
+                 x = carbonTot, color = siteID))
+```
 
 ### 2. Comparing Megapit Data Across Ecosystems
 
